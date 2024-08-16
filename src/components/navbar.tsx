@@ -9,7 +9,6 @@ import { DarkThemeContext } from '../context'
 const Navbar = () => {
   const [menu,openMenu] = useState(false);
   const { darkTheme, setDarkTheme } = useContext(DarkThemeContext);
-  console.log(darkTheme);
 
   return (
     <div className="flex justify-between items-center px-8 h-16 shadow-lg bg-white">

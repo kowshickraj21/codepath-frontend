@@ -1,6 +1,17 @@
 import GoogleButton from '../components/googleButton'
 import github from '../assets/github.svg'
+import getCookie from '../functions/getCookie'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 const Login = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(getCookie("authToken")){
+      navigate('/');
+    }
+  },[])
+
   return (
     <div className="h-svh w-full bg-black bg-opacity-50 flex justify-center items-center">
         <div className="w-1/4 h-1/3 py-8 bg-white flex flex-col justify-evenly items-center rounded-md">

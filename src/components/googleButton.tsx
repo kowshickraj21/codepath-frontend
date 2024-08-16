@@ -12,6 +12,7 @@ const GoogleButton = () => {
                 const token = await axios.get(
                     `http://localhost:3050/auth/google/callback?code=${res.access_token}`
                 );
+                document.cookie = `authToken=${token}; path=/; secure; samesite=strict`;
                 console.log(token);
                 navigate("/");
             } catch (error) {
@@ -27,3 +28,4 @@ const GoogleButton = () => {
 }
 
 export default GoogleButton
+
