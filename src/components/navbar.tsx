@@ -4,11 +4,12 @@ import { CiLogout } from "react-icons/ci";
 import codepath from "../assets/codepath.png"
 import { useContext, useState } from "react";
 import { googleLogout } from "@react-oauth/google";
-import { DarkThemeContext } from '../context'
+import { DarkThemeContext, UserContext } from '../context'
 
 const Navbar = () => {
   const [menu,openMenu] = useState(false);
   const { darkTheme, setDarkTheme } = useContext(DarkThemeContext);
+  const { User } = useContext(UserContext);
 
   return (
     <div className="flex justify-between items-center px-8 h-16 shadow-lg bg-white">

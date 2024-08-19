@@ -8,12 +8,11 @@ const GoogleButton = () => {
     const login = useGoogleLogin({
         onSuccess: async (res) => {
             try {
-                console.log(res);
                 const token = await axios.get(
                     `http://localhost:3050/auth/google/callback?code=${res.access_token}`
                 );
-                document.cookie = `authToken=${token}; path=/; secure; samesite=strict`;
-                console.log(token);
+                document.cookie = `authToken=${token.data}; path=/; secure; samesite=strict`;
+
                 navigate("/");
             } catch (error) {
                 console.error("Error during Google login", error);
