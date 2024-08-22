@@ -25,7 +25,7 @@ const Navbar = () => {
 
         <div className="flex gap-7 items-center mr-2">
             <IoMoon className="text-2xl" onClick={() => setDarkTheme(!darkTheme)} />
-            <div className="bg-black rounded-full h-10 w-10" onClick={() => openMenu(!menu)} />
+            <img src={User.picture} className="bg-black rounded-full h-10 w-10" onClick={() => openMenu(!menu)} />
             <div className={`${menu?'absolute':'hidden'} top-16 right-10 mt-1 p-5 py-3 rounded-md bg-white`}>
               <button className="flex items-center gap-2" onClick={() => googleLogout()}><CiLogout /> Logout</button>
             </div>

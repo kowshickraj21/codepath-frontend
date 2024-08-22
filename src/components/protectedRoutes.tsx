@@ -13,14 +13,10 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
   const { User, setUser } = useContext(UserContext);
-
   const authToken = getCookie("authToken");
 
-  if (!authToken) {
-    return <Navigate to="/login" />;
-  }
-  
   useEffect(() => {
+    if (!authToken) return;
     async function fetchUser(token: string): Promise<User> {
       const res = await axios.get<User>(
         `http://localhost:3050/user`,
@@ -34,7 +30,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
     }
   
     async function getUser() {
-      if (authToken && Object.keys(User).length === 0) {
+      if (authToken && !User.name) {
         try {
           const user: User = await fetchUser(authToken); 
           setUser(user); 
@@ -45,7 +41,12 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
     }
   
     getUser(); 
-  }, []); 
+  }, [authToken, User, setUser]); 
+
+  if (!authToken) {
+    return <Navigate to="/login" />;
+  }
+  
   
 
   return element;
