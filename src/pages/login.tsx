@@ -1,13 +1,13 @@
 import GoogleButton from '../components/googleButton'
 import github from '../assets/github.svg'
-import getCookie from '../functions/getCookie'
+import { getToken } from '../functions/Token'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(getCookie("authToken")){
+    if(getToken("authToken")){
       navigate('/');
     }
   },[])

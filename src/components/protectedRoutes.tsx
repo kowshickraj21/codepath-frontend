@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import getCookie from '../functions/getCookie';
+import { getToken } from '../functions/Token';
 import { User, UserContext } from '../context';
 import axios from "axios";
 
@@ -13,7 +13,7 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
   const { User, setUser } = useContext(UserContext);
-  const authToken = getCookie("authToken");
+  const authToken = getToken("authToken");
 
   useEffect(() => {
     if (!authToken) return;

@@ -3,13 +3,20 @@ import { FaSearch } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import codepath from "../assets/codepath.png"
 import { useContext, useState } from "react";
-import { googleLogout } from "@react-oauth/google";
 import { DarkThemeContext, UserContext } from '../context'
+import { delelteToken } from "../functions/Token";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menu,openMenu] = useState(false);
   const { darkTheme, setDarkTheme } = useContext(DarkThemeContext);
   const { User } = useContext(UserContext);
+
+  const logout = () => {
+    delelteToken("authToken");
+    navigate('/login');
+  }
 
   return (
     <div className="flex justify-between items-center px-8 h-16 shadow-lg bg-white">
@@ -27,7 +34,7 @@ const Navbar = () => {
             <IoMoon className="text-2xl" onClick={() => setDarkTheme(!darkTheme)} />
             <img src={User.picture} className="bg-black rounded-full h-10 w-10" onClick={() => openMenu(!menu)} />
             <div className={`${menu?'absolute':'hidden'} top-16 right-10 mt-1 p-5 py-3 rounded-md bg-white`}>
-              <button className="flex items-center gap-2" onClick={() => googleLogout()}><CiLogout /> Logout</button>
+              <button className="flex items-center gap-2" onClick={() => logout()}><CiLogout /> Logout</button>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ const GoogleButton = () => {
                 const token = await axios.get(
                     `http://localhost:3050/auth/google/callback?code=${res.access_token}`
                 );
-                document.cookie = `authToken=${token.data}; path=/; secure; samesite=strict`;
+                localStorage.setItem("authToken",token.data);
 
                 navigate("/");
             } catch (error) {
