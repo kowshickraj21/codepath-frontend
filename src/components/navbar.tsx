@@ -18,6 +18,7 @@ const Navbar = () => {
     navigate('/login');
   }
 
+  console.log(User)
   return (
     <div className="flex justify-between items-center px-8 h-16 shadow-lg bg-white">
 

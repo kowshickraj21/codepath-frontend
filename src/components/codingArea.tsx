@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import axios from 'axios';
+import Testcases from './testcases';
 
 interface CodingAreaProps {
   id: string;
@@ -9,10 +10,14 @@ interface CodingAreaProps {
 const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
   const [language, setLanguage] = useState('java');
   const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
+  
 
   const setSubmit = async() => {
+    setLoading(true);
     const res = await axios.post(`http://localhost:3050/submit/${id}`,{language:language,code:code})
     console.log(res);
+    setLoading(false);
   };
 
   const handleChange = (value: string | undefined) => {
@@ -32,10 +37,10 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
     }
 
     fetchAPI();
-  }, [language]);
+  }, [id, language]);
 
   return (
-    <div className="w-1/2 h-full">
+    <div className="w-1/2 h-svh">
       <div className="h-10 mt-1 flex justify-between items-center pr-3">
         <select name="language" value={language} id="language" className="h-8 w-20 rounded-md bg-gray-100 shadow-lg" onChange={(e) => setLanguage(e.target.value)}>
           <option value="java">Java</option>
@@ -43,7 +48,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
         </select>
         
         <div className="flex items-center gap-5">
-          <button className="bg-gray-600 h-8 text-white px-5 rounded-md">Run</button>
+          <button className="bg-gray-600 h-8 text-white px-5 rounded-md" onClick={() => setLoading(true)}>Run</button>
           <button className="bg-green-600 h-8 text-white px-5 rounded-md" onClick={setSubmit}>
             Submit
           </button>
@@ -59,6 +64,8 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
         value={code}
         onChange={handleChange}
       />
+
+      <Testcases  loading={loading}/>
     </div>
   );
 };

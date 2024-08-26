@@ -26,7 +26,7 @@ const Problem = () => {
   return (
     <div className="bg-black bg-opacity-10">
     <Navbar />
-    <div className="flex w-full h-svh">
+    <div className="flex w-full h-full">
     {problem.Title == ""?
     <p className="m-auto">Loading...</p>:
         <div className="w-1/2 p-10 lg:pr-20">
@@ -38,8 +38,10 @@ const Problem = () => {
             <div key={index}>
               <h2 className="text-lg font-medium mb-3">Example {index+1}:</h2>
               <div className="flex flex-col gap-2">
-                <p>Input: {example.input}</p>
-                <p>Output: {example.output}</p>
+                <p>Input: </p>
+                 <p className="bg-slate-900 pt-3 pl-3 text-white h-14"> {example.input}</p>
+                <p>Output: </p>
+                <p className="bg-slate-900 pt-3 pl-3 text-white h-14"> {example.output}</p>
               </div>
             </div>
           )
