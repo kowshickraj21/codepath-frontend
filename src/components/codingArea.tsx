@@ -2,21 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import axios from 'axios';
 import Testcases from './testcases';
+import Result from './Result';
 
 interface CodingAreaProps {
   id: string;
+}
+
+interface Status {
+  id: number;
+  description: string;
 }
 
 const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
   const [language, setLanguage] = useState('java');
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<Status[]>([]);
   
 
   const setSubmit = async() => {
     setLoading(true);
-    const res = await axios.post(`http://localhost:3050/submit/${id}`,{language:language,code:code})
-    console.log(res);
+    const res = await axios.post(`http://localhost:3050/submit/${id}`,{language:language,code:code},
+      {
+        headers: {
+          'user': localStorage.getItem("authToken"),
+      },
+      }
+    )
+    console.log(res.data);
+    setResult(res.data);
     setLoading(false);
   };
 
@@ -65,7 +79,8 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
         onChange={handleChange}
       />
 
-      <Testcases  loading={loading}/>
+      {result.length > 0 ?<Testcases  loading={loading} result={result}/>:
+      <Result />}
     </div>
   );
 };
