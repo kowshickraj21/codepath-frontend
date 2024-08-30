@@ -2,13 +2,11 @@ import { useContext, useEffect } from "react"
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { getToken } from '../functions/Token';
-import { User, UserContext } from '../context';
+import { UserContext } from '../context';
+import { User,ProtectedRouteProps } from '../types'
 import axios from "axios";
 
 
-interface ProtectedRouteProps {
-  element: React.ReactNode;
-}
 
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {

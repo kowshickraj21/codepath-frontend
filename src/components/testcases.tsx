@@ -1,16 +1,7 @@
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
 import { VscError } from "react-icons/vsc";
-
-interface Status {
-  id: number;
-  description: string;
-}
-
-interface codingAreaProps {
-  loading : boolean
-  result : Status[] 
-}
+import { codingAreaProps } from "../types";
 
 const Testcases = ({loading, result} : codingAreaProps) => {
 

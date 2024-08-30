@@ -1,24 +1,6 @@
 import { createContext, useState,useEffect } from 'react';
+import { DarkThemeContextType,UserContextType,contextProps,User } from './types'
 
-interface DarkThemeContextType {
-    darkTheme: boolean;
-    setDarkTheme: (value: boolean) => void;
-}
-
-interface contextProps {
-    children : JSX.Element
-}
-export interface User{
-    name: string,
-    email: string,
-    picture: string,
-    Problems: Int32List
-}
-
-interface UserContextType {
-  User: User;
-  setUser: (value:User) => void;
-}
 
 const DarkThemeContext = createContext<DarkThemeContextType>({
  darkTheme: false,

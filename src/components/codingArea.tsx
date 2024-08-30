@@ -3,19 +3,10 @@ import Editor from '@monaco-editor/react';
 import axios from 'axios';
 import Testcases from './testcases';
 import Result from './Result';
+import { Status, CodingAreaProps} from '../types'
 
-interface CodingAreaProps {
-  id: string;
-}
-
-interface Status {
-  id: number;
-  description: string;
-}
-
-const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
+const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
   const [language, setLanguage] = useState('java');
-  const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<Status[]>([]);
   
@@ -51,7 +42,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
     }
 
     fetchAPI();
-  }, [id, language]);
+  }, [id, language, setCode]);
 
   return (
     <div className="w-1/2 h-svh">
@@ -79,7 +70,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id }) => {
         onChange={handleChange}
       />
 
-      {result.length > 0 ?<Testcases  loading={loading} result={result}/>:
+      {(loading || result.length > 0)?<Testcases  loading={loading} result={result}/>:
       <Result />}
     </div>
   );
