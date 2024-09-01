@@ -25,7 +25,7 @@ const Description:React.FC<{problemId : string}> = ({problemId}) => {
     <div>
         {problem.Pid == 0? <p className='flex h-96 w-full justify-center items-center font-semibold'>Loading...</p>:
         <div>
-        <h1 className="mt-10 text-black text-3xl font-semibold">{problem.Pid}.{problem.Title}</h1>
+        <h1 className="mt-10 text-3xl font-semibold">{problem.Pid}.{problem.Title}</h1>
         <p className="mt-5">{problem.Description}</p>
         <div className="mt-10 flex flex-col gap-7">
         {problem.Examples.map((example,index) => {

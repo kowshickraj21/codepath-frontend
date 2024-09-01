@@ -47,7 +47,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
   return (
     <div className="w-1/2 h-svh">
       <div className="h-10 mt-1 flex justify-between items-center pr-3">
-        <select name="language" value={language} id="language" className="h-8 w-20 rounded-md bg-gray-100 shadow-lg" onChange={(e) => setLanguage(e.target.value)}>
+        <select name="language" value={language} id="language" className="h-8 w-20 rounded-md text-black bg-gray-100 shadow-lg" onChange={(e) => setLanguage(e.target.value)}>
           <option value="java">Java</option>
           <option value="cpp">C++</option>
         </select>

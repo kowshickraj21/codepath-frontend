@@ -25,12 +25,12 @@ const Home = () => {
             {problems.map((problem,index) => {
               const finished = User.Problems.includes(problem.Pid)
               return(
-              <a href={`/problem/${problem.Pid}`} className={`w-full ${finished?'bg-green-200':'bg-white'} bg-opacity-70 h-16 border border-black border-opacity-15 flex items-center px-5`} key={index}>
+              <a href={`/problem/${problem.Pid}`} className={`w-full ${finished?'bg-green-300':'bg-white'} bg-opacity-70 h-16 border border-black border-opacity-15 flex items-center px-5`} key={index}>
               <div className="flex items-center justify-between w-full">
               <div className="flex gap-5">
               <p className="text-lg font-medium mr-5">{problem.Pid}. </p>
               <p className="text-blue-600 text-lg font-medium">{problem.Title}</p>
-              <p className=" text-sm bg-slate-100 pt-1 px-3 rounded-3xl font-medium">Dynamic Programming</p>
+              <p className=" text-sm bg-slate-100 pt-1 px-3 text-black rounded-3xl font-medium">Dynamic Programming</p>
               </div>
               <div className="flex gap-10">
                 <p className="text-orange-400 font-semibold">Medium</p>

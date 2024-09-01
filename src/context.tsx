@@ -28,9 +28,9 @@ const ThemeProvider: React.FC<contextProps> = ({ children }) => {
  });
 
  useEffect(() => {
+  setDarkTheme(localStorage.getItem("darkTheme") == "true")
     document.body.className = darkTheme ? 'dark' : 'light';
   }, [darkTheme]);
-
  return (
   <UserContext.Provider value={{User,setUser}} >
    <DarkThemeContext.Provider value={{ darkTheme, setDarkTheme }}>

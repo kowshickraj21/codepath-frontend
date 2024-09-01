@@ -28,7 +28,7 @@ const Submissions:React.FC<{id : string, setCode : React.Dispatch<React.SetState
 
   return (
     <div className="pt-3 pl-8 pr-12 w-full">
-        <div className="flex justify-between items-center h-12 border-2 border-black px-10 w-full">
+        <div className="flex justify-between items-center h-12 border-2 border-white px-10 w-full">
             <p>Status</p>
             <p>Language</p>
             <p>View</p>
