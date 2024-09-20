@@ -65,7 +65,7 @@ export interface Status {
   
 export interface codingAreaProps {
     loading : boolean
-    result : Status[] 
+    results : Status[] 
 }
 
 export interface ProblemPropsType{

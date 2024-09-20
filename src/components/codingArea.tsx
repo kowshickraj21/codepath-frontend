@@ -8,11 +8,13 @@ import { Status, CodingAreaProps} from '../types'
 const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
   const [language, setLanguage] = useState('java');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [result, setResult] = useState<Status[]>([]);
   
 
   const setSubmit = async() => {
     setLoading(true);
+    try{
     const res = await axios.post(`http://localhost:3050/submit/${id}`,{language:language,code:code},
       {
         headers: {
@@ -22,6 +24,10 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
     )
     console.log(res.data);
     setResult(res.data);
+  }catch(e){
+    console.log(e.response.data);
+    setError(e.response.data);
+  }
     setLoading(false);
   };
 
@@ -70,8 +76,8 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
         onChange={handleChange}
       />
 
-      {(loading || result.length > 0)?<Testcases  loading={loading} result={result}/>:
-      <Result />}
+      {(loading || result.length > 0)?<Testcases  loading={loading} results={result}/>:
+      <Result Error={error} />}
     </div>
   );
 };
