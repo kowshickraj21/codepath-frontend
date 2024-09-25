@@ -23,16 +23,16 @@ const Submissions:React.FC<{id : string, setCode : React.Dispatch<React.SetState
                 }
             )
             setSubmissions(res.data)
-            console.log(res.data)
         }
         fetchSubmissions()
     },[id])
 
   return (
     <div className="pt-3 pl-8 pr-12 w-full">
-        {submissions == null || submissions.length == 0? <p>Loading...</p>:
+        {submissions == null? <p className='flex h-96 w-full justify-center items-center font-semibold'>Loading...</p>:
+        submissions.length == 0?<p className='flex h-96 w-full justify-center items-center font-semibold'>No Solutions Found</p>:
         <div>
-        <div className="flex justify-between items-center h-12 border-2 border-white px-10 w-full">
+        <div className="flex justify-between items-center h-12 border-2 border-black px-10 w-full">
             <p>Status</p>
             <p>Language</p>
             <p>View</p>
@@ -42,15 +42,10 @@ const Submissions:React.FC<{id : string, setCode : React.Dispatch<React.SetState
             <div className="flex justify-between px-9 items-center h-12" key={index}>
             <p>{submission.Status}</p>
             <p>{submission?.Language}</p>
-            <p className="text-blue-700 underline cursor-pointer" onClick={() => setCode(submissions[0].Code)}>View</p>
+            <p className="text-blue-700 underline cursor-pointer" onClick={() => setCode(submissions[index].Code)}>View</p>
         </div>
             )
         })}
-        <div className="flex justify-between px-9 items-center h-12">
-            <p>Accepted</p>
-            <p>{submissions[0]?.Language}</p>
-            <p className="text-blue-700 underline cursor-pointer" onClick={() => setCode(submissions[0].Code)}>View</p>
-        </div>
         </div>
         }
     </div>

@@ -23,10 +23,12 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
       }
     )
     console.log(res.data);
+    console.log(error);
     setResult(res.data);
+    setError("");
   }catch(e){
-    console.log(e.response.data);
     setError(e.response.data);
+    setResult([]);
   }
     setLoading(false);
   };
@@ -77,7 +79,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id,code,setCode }) => {
       />
 
       {(loading || result.length > 0)?<Testcases  loading={loading} results={result}/>:
-      <Result Error={error} />}
+      error?<Result Error={error} />:null}
     </div>
   );
 };

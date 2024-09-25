@@ -6,7 +6,7 @@ import { problems } from "../types";
 import axios from "axios";
 const Home = () => {
   const [ problems,setProblems ] = useState<problems[]>([]);
-  const { User } = useContext(UserContext)
+  const { User } = useContext(UserContext);
 
   useEffect(() => {
     const getProblems = async() => {
@@ -22,6 +22,10 @@ const Home = () => {
         <div className="">
           <p className="mt-10 ml-10 text-2xl font-semibold">Welcome, <span className="text-blue-400">{User.name}</span></p>
           <div className="mt-20 w-full px-28 flex flex-col gap-3">
+            <div className="mb-10 m-auto w-full text-center">
+            <h2 className="mb-2 text-lg font-medium">1/{problems.length}</h2>
+            <progress className="h-5 w-5/6 progressBar " value={1/problems.length} />
+            </div>
             {problems.map((problem,index) => {
               const finished = User.Problems.includes(problem.Pid)
               return(
