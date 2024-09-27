@@ -6,10 +6,10 @@ import axios from "axios"
 const Description:React.FC<{problemId : string}> = ({problemId}) => {
 
     const [problem,setProblem] = useState<Problem>({
-        Title:"",
-        Description:"",
-        Pid: 0,
-        Examples:[{input:"",output:""}],
+        title:"",
+        description:"",
+        pid: 0,
+        examples:[{input:"",output:""}],
     });
     useEffect(() => {
         async function fetchAPI(){
@@ -23,12 +23,12 @@ const Description:React.FC<{problemId : string}> = ({problemId}) => {
 
   return (
     <div>
-        {problem.Pid == 0? <p className='flex h-96 w-full justify-center items-center font-semibold'>Loading...</p>:
+        {problem.pid == 0? <p className='flex h-96 w-full justify-center items-center font-semibold'>Loading...</p>:
         <div>
-        <h1 className="mt-10 text-3xl font-semibold">{problem.Pid}.{problem.Title}</h1>
-        <p className="mt-5">{problem.Description}</p>
+        <h1 className="mt-10 text-3xl font-semibold">{problem.pid}.{problem.title}</h1>
+        <p className="mt-5">{problem.description}</p>
         <div className="mt-10 flex flex-col gap-7">
-        {problem.Examples.map((example,index) => {
+        {problem.examples.map((example,index) => {
           return(
             <div key={index}>
               <h2 className="text-lg font-medium mb-3">Example {index+1}:</h2>

@@ -1,13 +1,15 @@
 export interface problems{
-    Pid: number,
-    Title: string,
+    pid: number,
+    title: string,
+    difficulty: string,
+    tags: string[]
 }
 
 export interface Problem{
-    Title: string,
-    Description: string,
-    Pid: number,
-    Examples: Examples[],
+    title: string,
+    description: string,
+    pid: number,
+    examples: Examples[],
 }
 
 export interface Submissions{
