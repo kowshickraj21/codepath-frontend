@@ -45,10 +45,14 @@ const Navbar = () => {
             <IoIosSunny className="text-3xl" onClick={handleThemeChange} />:
             <IoMoon className="text-2xl" onClick={handleThemeChange} />
             }
+            {User.picture?
+            <div>
             <img src={User.picture} className="bg-black rounded-full h-10 w-10" onClick={() => openMenu(!menu)} referrerPolicy="no-referrer" />
             <div className={`${menu?'absolute':'hidden'} top-16 right-10 mt-1 p-5 py-3 rounded-md shadow-xl ${darkTheme?'dark':'light'}`}>
               <button className="flex items-center gap-2" onClick={() => logout()}><CiLogout /> Logout</button>
             </div>
+            </div>
+            : null }
         </div>
     </div>
   )
