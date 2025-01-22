@@ -37,8 +37,15 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id, code, setCode }) => {
         }
       );
       setCurrentResult({ type, data: res.data });
-    } catch (e) {
-      setCurrentResult({ type: 'error', data: e.response?.data || 'An error occurred' });
+      
+    }catch (e: unknown) {
+      let errorMessage = 'An error occurred';
+    
+      if (e && typeof e === 'object' && 'response' in e) {
+        errorMessage = (e as { response?: { data?: string } }).response?.data || errorMessage;
+      }
+    
+      setCurrentResult({ type: 'error', data: errorMessage });
     }
     setLoading(false);
   };

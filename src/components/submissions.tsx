@@ -15,16 +15,15 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all submissions
   const fetchSubmissions = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:3050/submission/${id}`, {
+      const res = await axios.get(`${import.meta.env.BACKEND_URL}/submission/${id}`, {
         headers: {
           user: localStorage.getItem("authToken"),
         },
       });
-      setSubmissions(res.data);  // Assuming the response contains all submissions
+      setSubmissions(res.data); 
     } catch (error) {
       console.error("Error fetching submissions:", error);
     } finally {
@@ -36,12 +35,10 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
     fetchSubmissions();
   }, [id]);
 
-  // Pagination logic
   const itemsPerPage = 10;
   const totalPages = Math.ceil(submissions.length / itemsPerPage);
   const currentItems = submissions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
-  // Pagination control buttons
   const goToNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -82,7 +79,6 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
             );
           })}
 
-          {/* Pagination Controls */}
           <div className="flex justify-between items-center mt-4">
             <button
               className="bg-gray-500 text-white px-4 py-2 rounded-md"
