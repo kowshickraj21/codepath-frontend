@@ -16,7 +16,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id, code, setCode }) => {
 
   const fetchCode = async () => {
     try {
-      const res = await axios.get(`http://localhost:3050/code/${id}/${language}`);
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/code/${id}/${language}`);
       setCode(res.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -28,7 +28,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id, code, setCode }) => {
     setCurrentResult({type: type,data: [] })
     try {
       const res = await axios.post(
-        `http://localhost:3050/${type}/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/${type}/${id}`,
         { language, code },
         {
           headers: {

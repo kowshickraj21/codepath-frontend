@@ -18,11 +18,12 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
   const fetchSubmissions = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${import.meta.env.BACKEND_URL}/submission/${id}`, {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/submission/${id}`, {
         headers: {
           user: localStorage.getItem("authToken"),
         },
       });
+      console.log(res.data)
       setSubmissions(res.data); 
     } catch (error) {
       console.error("Error fetching submissions:", error);

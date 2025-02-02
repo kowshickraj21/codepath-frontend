@@ -14,7 +14,7 @@ const Description:React.FC<{problemId : string}> = ({problemId}) => {
     useEffect(() => {
         async function fetchAPI(){
             const res = await axios.get(
-                `http://localhost:3050/problem/${problemId}`
+                `${import.meta.env.VITE_BACKEND_URL}/problem/${problemId}`
             )
             setProblem(res.data);
         }

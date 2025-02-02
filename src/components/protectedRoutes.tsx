@@ -17,7 +17,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
     if (!authToken || User.email) return;
     async function fetchUser(token: string): Promise<User> {
       const res = await axios.get<User>(
-        `http://localhost:3050/user`,
+        `${import.meta.env.VITE_BACKEND_URL}/user`,
         {
           params: {
             token: token,

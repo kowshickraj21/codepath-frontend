@@ -9,7 +9,7 @@ const GoogleButton = () => {
         onSuccess: async (res) => {
             try {
                 const token = await axios.get(
-                    `http://localhost:3050/auth/google/callback?code=${res.access_token}`
+                    `${import.meta.env.VITE_BACKEND_URL}/auth/google/callback?code=${res.access_token}`
                 );
                 localStorage.setItem("authToken",token.data);
 
