@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     const getProblems = async() => {
-      const res = await axios.get('http://localhost:3050/problems')
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/problems`)
       setProblems(res.data);
     }
     getProblems();
