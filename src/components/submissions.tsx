@@ -37,8 +37,8 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
   }, [id]);
 
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(submissions.length / itemsPerPage);
-  const currentItems = submissions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const totalPages = submissions ? Math.ceil(submissions.length / itemsPerPage) : 0;
+  const currentItems = submissions ? submissions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) : [];
 
   const goToNextPage = () => {
     if (currentPage < totalPages) {
@@ -56,7 +56,7 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
     <div className="pt-3 pl-8 pr-12 w-full">
       {loading ? (
         <p className="flex h-96 w-full justify-center items-center font-semibold">Loading...</p>
-      ) : submissions.length === 0 ? (
+      ) : !submissions || submissions.length === 0 ? (
         <p className="flex h-96 w-full justify-center items-center font-semibold">No Solutions Found</p>
       ) : (
         <div>
