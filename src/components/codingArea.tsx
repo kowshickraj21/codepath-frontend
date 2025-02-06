@@ -36,6 +36,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id, code, setCode }) => {
           },
         }
       );
+      console.log(res.data)
       setCurrentResult({ type, data: res.data });
       
     }catch (e: unknown) {
@@ -71,6 +72,7 @@ const CodingArea: React.FC<CodingAreaProps> = ({ id, code, setCode }) => {
 
   useEffect(() => {
     fetchCode();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, language]);
 
   return (

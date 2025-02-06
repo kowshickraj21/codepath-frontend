@@ -23,7 +23,6 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
           user: localStorage.getItem("authToken"),
         },
       });
-      console.log(res.data)
       setSubmissions(res.data); 
     } catch (error) {
       console.error("Error fetching submissions:", error);
@@ -34,6 +33,7 @@ const Submissions: React.FC<{ id: string; setCode: React.Dispatch<React.SetState
 
   useEffect(() => {
     fetchSubmissions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const itemsPerPage = 10;
